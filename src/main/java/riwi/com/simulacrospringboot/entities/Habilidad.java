@@ -24,4 +24,6 @@ public class Habilidad {
     @ManyToMany(mappedBy = "habilidad_id")
     private List<Mision> mision_id;
 
+    @ManyToMany(mappedBy = "habilidades")
+    private List<Usuario> usuarios;
 }

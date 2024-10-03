@@ -22,6 +22,7 @@ public class Mision {
     private String id;
     private String titulo;
     private String descripcion;
+
     //private String imagen;
     private enumNivel nivel; // enum
     private int puntos;

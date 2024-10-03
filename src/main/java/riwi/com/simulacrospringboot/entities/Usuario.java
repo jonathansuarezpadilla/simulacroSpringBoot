@@ -29,4 +29,12 @@ public class Usuario {
     @ManyToMany(mappedBy = "usuario_id")
     private List<Mision> mision_id;
 
+    @ManyToMany
+    @JoinTable(
+            name="usuario_habilidad",
+            joinColumns=@JoinColumn(name="usuarios_id"),
+            inverseJoinColumns = @JoinColumn(name="habilidades_id")
+    )
+    private List<Habilidad> habilidades;
+
 }
