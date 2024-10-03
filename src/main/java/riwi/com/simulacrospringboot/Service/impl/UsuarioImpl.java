@@ -3,12 +3,13 @@ package riwi.com.simulacrospringboot.Service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import riwi.com.simulacrospringboot.Repository.HabilidadRepository;
 import riwi.com.simulacrospringboot.Repository.UsuarioRepository;
 import riwi.com.simulacrospringboot.Service.interfaces.IUsuarioService;
 import riwi.com.simulacrospringboot.dtos.exception.ApiException;
 import riwi.com.simulacrospringboot.dtos.request.UserRequest;
 import riwi.com.simulacrospringboot.dtos.response.UserResponse;
+import riwi.com.simulacrospringboot.entities.Habilidad;
 import riwi.com.simulacrospringboot.entities.Usuario;
 
 import java.util.List;
@@ -20,6 +21,9 @@ public class UsuarioImpl implements IUsuarioService {
 
     @Autowired
     private UsuarioRepository userRepository;
+
+    @Autowired
+    private HabilidadRepository habilidadRepository;
 
     @Override
     public Usuario create(UserRequest request) {
@@ -111,5 +115,22 @@ public class UsuarioImpl implements IUsuarioService {
             usuario.setPassword(userRequest.getPassword());
         }
         userRepository.save(usuario);
+    }
+
+    @Override
+    public void assingAbility(String id, List<String> habilidadesIds) {
+
+        Usuario usuario = userRepository.findById(id).orElseThrow(()-> new ApiException("Este usuario no existe") );
+
+        List<Habilidad> habilidades =habilidadRepository.findAllById(habilidadesIds);
+
+        // Error por habilidades no existentes en la base de datos
+        if (habilidades.size() != habilidadesIds.size()) {
+            throw new ApiException("Una o más habilidades no existen");
+        }
+
+        usuario.setHabilidades(habilidades);
+        userRepository.save(usuario);
+
     }
 }
