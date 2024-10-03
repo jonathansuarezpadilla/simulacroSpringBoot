@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class habilidad {
+public class Habilidad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

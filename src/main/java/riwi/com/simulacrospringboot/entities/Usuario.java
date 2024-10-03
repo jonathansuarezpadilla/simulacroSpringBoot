@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class usuario {
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -22,6 +22,7 @@ public class usuario {
     private String nombre;
     private String apellido;
     private String email;
+    @Enumerated(EnumType.STRING)
     private enumUsuario rol;//(enum)
     private String password;
 

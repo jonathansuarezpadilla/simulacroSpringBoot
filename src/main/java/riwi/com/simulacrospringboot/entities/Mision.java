@@ -33,7 +33,7 @@ public class Mision {
             joinColumns=@JoinColumn(name="mision_id"),
             inverseJoinColumns = @JoinColumn(name="usuario_id")
     )
-    private List<usuario> usuario_id;
+    private List<Usuario> usuario_id;
 
     @ManyToMany
     @JoinTable(
@@ -41,7 +41,7 @@ public class Mision {
             joinColumns = @JoinColumn(name="mision_id"),
             inverseJoinColumns = @JoinColumn(name="habilidad_id")
     )
-    private List<habilidad> habilidad_id;
+    private List<Habilidad> habilidad_id;
 
 
 }
