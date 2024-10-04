@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/api/v1")
+@RequestMapping("usuario")
 public class UserController implements InterfaceUserControl {
 
     @Autowired
@@ -65,10 +65,5 @@ public class UserController implements InterfaceUserControl {
         return ResponseEntity.ok("User successfully updated");
     }
 
-    @Override
-    @PostMapping("/estudiantes/{id}/habilidades")
-    public ResponseEntity<String> assign(@PathVariable String id,@RequestBody List<String> habilidadesIds) {
-        usuarioService.assingAbility(id,habilidadesIds);
-        return ResponseEntity.ok("User successfully assigned to habilidades");
-    }
+
 }

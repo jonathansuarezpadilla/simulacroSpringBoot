@@ -1,5 +1,6 @@
 package riwi.com.simulacrospringboot.Service.interfaces;
 
+import riwi.com.simulacrospringboot.Controllers.GenericMethods.AssingMision;
 import riwi.com.simulacrospringboot.Service.CRUD.*;
 import riwi.com.simulacrospringboot.dtos.request.UserRequest;
 import riwi.com.simulacrospringboot.dtos.response.UserResponse;
@@ -11,5 +12,6 @@ public interface IUsuarioService extends
         Delete<String>,
         ReadAll<UserResponse>, Put<UserRequest,String>,
         Path<UserRequest,String>,
-        AssingAbility<String>{
+        AssingAbility<String>,
+        AssingMission<String>{
 }
