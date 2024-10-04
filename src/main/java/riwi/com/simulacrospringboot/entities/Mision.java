@@ -24,16 +24,13 @@ public class Mision {
     private String descripcion;
 
     //private String imagen;
+    @Enumerated(EnumType.STRING)
     private enumNivel nivel; // enum
     private int puntos;
+    @Enumerated(EnumType.STRING)
     private enumCompletada completada;
 
-    @ManyToMany
-    @JoinTable(
-            name="usuario_mision",
-            joinColumns=@JoinColumn(name="mision_id"),
-            inverseJoinColumns = @JoinColumn(name="usuario_id")
-    )
+    @ManyToMany(mappedBy = "mision_id")
     private List<Usuario> usuario_id;
 
     @ManyToMany

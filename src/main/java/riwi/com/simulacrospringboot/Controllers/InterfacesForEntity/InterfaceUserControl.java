@@ -10,6 +10,5 @@ public interface InterfaceUserControl extends
         Delete<String,String>,
         ReadAll<UserResponse>,
         Put<UserRequest,String>,
-        Path<UserRequest,String>,
-        AssignAbility<String>{
+        Path<UserRequest,String>{
 }

@@ -4,12 +4,14 @@ package riwi.com.simulacrospringboot.Service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import riwi.com.simulacrospringboot.Repository.HabilidadRepository;
+import riwi.com.simulacrospringboot.Repository.MisionRepository;
 import riwi.com.simulacrospringboot.Repository.UsuarioRepository;
 import riwi.com.simulacrospringboot.Service.interfaces.IUsuarioService;
 import riwi.com.simulacrospringboot.dtos.exception.ApiException;
 import riwi.com.simulacrospringboot.dtos.request.UserRequest;
 import riwi.com.simulacrospringboot.dtos.response.UserResponse;
 import riwi.com.simulacrospringboot.entities.Habilidad;
+import riwi.com.simulacrospringboot.entities.Mision;
 import riwi.com.simulacrospringboot.entities.Usuario;
 
 import java.util.List;
@@ -24,6 +26,9 @@ public class UsuarioImpl implements IUsuarioService {
 
     @Autowired
     private HabilidadRepository habilidadRepository;
+
+    @Autowired
+    private MisionRepository misionRepository;
 
     @Override
     public Usuario create(UserRequest request) {
@@ -120,9 +125,9 @@ public class UsuarioImpl implements IUsuarioService {
     @Override
     public void assingAbility(String id, List<String> habilidadesIds) {
 
-        Usuario usuario = userRepository.findById(id).orElseThrow(()-> new ApiException("Este usuario no existe") );
+        Usuario usuario = userRepository.findById(id).orElseThrow(()-> new ApiException("Este usuario no existe"));
 
-        List<Habilidad> habilidades =habilidadRepository.findAllById(habilidadesIds);
+        List<Habilidad> habilidades=habilidadRepository.findAllById(habilidadesIds);
 
         // Error por habilidades no existentes en la base de datos
         if (habilidades.size() != habilidadesIds.size()) {
@@ -133,4 +138,36 @@ public class UsuarioImpl implements IUsuarioService {
         userRepository.save(usuario);
 
     }
+
+    @Override
+    public void assingMission(String id, List<String> MisssionIds) {
+
+        Usuario usuario= userRepository.findById(id).orElseThrow(()-> new ApiException("Este usuario no existe"));
+
+        List<Mision> missions=misionRepository.findAllById(MisssionIds);
+
+        if(missions.size() != MisssionIds.size()) {
+            throw  new ApiException("Una o mas misiones no existen, verifique los id");
+        }
+
+        //comprobar que el estudiante debe tener las habilidades requeridas para asignar una misión
+
+        missions.forEach(mision -> {
+            // Aquí puedes realizar la lógica de verificación de habilidades
+            // Ejemplo: Verificar si el usuario tiene las habilidades requeridas para la misión
+            boolean tieneHabilidadesRequeridas = mision.getHabilidad_id().stream()
+                    .allMatch(habilidadRequerida -> usuario.getHabilidades().contains(habilidadRequerida));
+
+            if (!tieneHabilidadesRequeridas) {
+                throw new ApiException("El usuario no tiene las habilidades requeridas para la misión: " + mision.getId());
+            }
+        });
+
+
+        usuario.setMision_id(missions);
+        userRepository.save(usuario);
+    }
+
+
+
 }

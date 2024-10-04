@@ -1,6 +1,6 @@
 package riwi.com.simulacrospringboot.Service.CRUD;
 
-public interface ReadById<ID,Entity> {
+public interface ReadById<ID,EntityResponse> {
 
-    public Entity readById(ID id);
+    public EntityResponse readById(ID id);
 }
