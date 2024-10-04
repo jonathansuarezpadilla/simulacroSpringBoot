@@ -10,5 +10,6 @@ public interface IUsuarioService extends
         ReadById<String,UserResponse>,
         Delete<String>,
         ReadAll<UserResponse>, Put<UserRequest,String>,
-        Path<UserRequest,String>{
+        Path<UserRequest,String>,
+        AssingAbility<String>{
 }
