@@ -1,4 +1,4 @@
-package riwi.com.simulacrospringboot.dtos.exception.model;
+package riwi.com.simulacrospringboot.exception.model;
 
 
 import lombok.Builder;

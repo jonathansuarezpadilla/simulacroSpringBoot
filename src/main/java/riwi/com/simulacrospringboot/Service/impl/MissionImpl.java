@@ -6,12 +6,11 @@ import org.springframework.stereotype.Service;
 import riwi.com.simulacrospringboot.Repository.HabilidadRepository;
 import riwi.com.simulacrospringboot.Repository.MisionRepository;
 import riwi.com.simulacrospringboot.Service.interfaces.IMissionService;
-import riwi.com.simulacrospringboot.dtos.exception.ApiException;
+import riwi.com.simulacrospringboot.exception.ApiException;
 import riwi.com.simulacrospringboot.dtos.request.MisionRequest;
 import riwi.com.simulacrospringboot.dtos.response.MissionResponse;
 import riwi.com.simulacrospringboot.entities.Habilidad;
 import riwi.com.simulacrospringboot.entities.Mision;
-import riwi.com.simulacrospringboot.entities.Usuario;
 
 import java.util.List;
 

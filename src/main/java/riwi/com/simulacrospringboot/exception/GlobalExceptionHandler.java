@@ -1,4 +1,4 @@
-package riwi.com.simulacrospringboot.dtos.exception;
+package riwi.com.simulacrospringboot.exception;
 
 
 import org.springframework.http.HttpStatus;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.View;
-import riwi.com.simulacrospringboot.dtos.exception.model.ApiError;
-import riwi.com.simulacrospringboot.dtos.exception.model.ErrorDetails;
+import riwi.com.simulacrospringboot.exception.model.ApiError;
+import riwi.com.simulacrospringboot.exception.model.ErrorDetails;
 
 import java.util.ArrayList;
 import java.util.List;

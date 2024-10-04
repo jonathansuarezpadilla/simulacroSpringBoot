@@ -7,7 +7,7 @@ import riwi.com.simulacrospringboot.Repository.HabilidadRepository;
 import riwi.com.simulacrospringboot.Repository.MisionRepository;
 import riwi.com.simulacrospringboot.Repository.UsuarioRepository;
 import riwi.com.simulacrospringboot.Service.interfaces.IUsuarioService;
-import riwi.com.simulacrospringboot.dtos.exception.ApiException;
+import riwi.com.simulacrospringboot.exception.ApiException;
 import riwi.com.simulacrospringboot.dtos.request.UserRequest;
 import riwi.com.simulacrospringboot.dtos.response.UserResponse;
 import riwi.com.simulacrospringboot.entities.Habilidad;

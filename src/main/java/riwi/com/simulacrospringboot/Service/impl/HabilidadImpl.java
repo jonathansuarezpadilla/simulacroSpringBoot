@@ -1,11 +1,10 @@
 package riwi.com.simulacrospringboot.Service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import riwi.com.simulacrospringboot.Repository.HabilidadRepository;
 import riwi.com.simulacrospringboot.Service.interfaces.IHabilidadService;
-import riwi.com.simulacrospringboot.dtos.exception.ApiException;
+import riwi.com.simulacrospringboot.exception.ApiException;
 import riwi.com.simulacrospringboot.dtos.request.HabilidadResquest;
 import riwi.com.simulacrospringboot.dtos.response.HabilidadResponse;
 import riwi.com.simulacrospringboot.entities.Habilidad;

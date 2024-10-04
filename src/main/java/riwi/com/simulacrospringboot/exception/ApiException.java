@@ -1,10 +1,10 @@
-package riwi.com.simulacrospringboot.dtos.exception;
+package riwi.com.simulacrospringboot.exception;
 
 
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
-import riwi.com.simulacrospringboot.dtos.exception.model.ErrorDetails;
+import riwi.com.simulacrospringboot.exception.model.ErrorDetails;
 
 import java.util.ArrayList;
 import java.util.List;
