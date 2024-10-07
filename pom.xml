@@ -59,11 +59,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            &lt;!&ndash; Esta dependencia utiliza las funcionalidades de spring security&ndash;&gt;-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <!-- Esta dependencia utiliza las funcionalidades de spring security-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <dependency>
             <!-- Esta es la dependencia para el testeo spring security-->
             <groupId>org.springframework.security</groupId>
@@ -99,6 +99,12 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>0.12.6</version>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-root</artifactId>
+            <version>0.12.6</version>
+            <type>pom</type>
         </dependency>
         <!-- Estas tres dependencias fueron para generar y utilizar el web token-->
         <dependency>

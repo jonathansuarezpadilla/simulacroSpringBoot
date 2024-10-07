@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import riwi.com.simulacrospringboot.Controllers.InterfacesForEntity.InterfaceHabilidadControl;
@@ -28,6 +29,7 @@ public class HabilidadController implements InterfaceHabilidadControl {
 
     @Override
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
     @Operation(summary = "Este endpoint es para crear una habilidad", description="estes enpoint requiere que envies la informacion para poder crear una habilidad")
     @ApiResponse(responseCode = "400", //arreglar
             description = "Este error sale cuando falta un atributo o el tipo es invalido",
@@ -45,6 +47,7 @@ public class HabilidadController implements InterfaceHabilidadControl {
 
     @Override
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
     @Operation(summary = "Este endpoint es para buscar traer una habilidad", description="estes enpoint requiere que envies el id de la habilidad")
     @ApiResponse(responseCode = "400", //arreglar
             description = "Este error sale cuando el id es invalido o la habilidad no existe",

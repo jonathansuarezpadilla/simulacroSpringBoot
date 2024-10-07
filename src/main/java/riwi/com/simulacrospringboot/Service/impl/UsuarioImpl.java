@@ -2,6 +2,7 @@ package riwi.com.simulacrospringboot.Service.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import riwi.com.simulacrospringboot.Repository.HabilidadRepository;
 import riwi.com.simulacrospringboot.Repository.MisionRepository;
@@ -22,6 +23,9 @@ import java.util.stream.Collectors;
 public class UsuarioImpl implements IUsuarioService {
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private UsuarioRepository userRepository;
 
     @Autowired
@@ -40,7 +44,7 @@ public class UsuarioImpl implements IUsuarioService {
                 .apellido(request.getApellido())
                 .email(request.getEmail())
                 .rol(request.getRol())
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
                 .build();
 
         return userRepository.save(usuario);
@@ -96,7 +100,7 @@ public class UsuarioImpl implements IUsuarioService {
         usuario.setApellido(request.getApellido());
         usuario.setEmail(request.getEmail());
         usuario.setRol(request.getRol());
-        usuario.setPassword(request.getPassword());
+        usuario.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepository.save(usuario);
     }
 
@@ -117,7 +121,7 @@ public class UsuarioImpl implements IUsuarioService {
             usuario.setRol(userRequest.getRol());
         }
         if(userRequest.getPassword()!=null){
-            usuario.setPassword(userRequest.getPassword());
+            usuario.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         }
         userRepository.save(usuario);
     }

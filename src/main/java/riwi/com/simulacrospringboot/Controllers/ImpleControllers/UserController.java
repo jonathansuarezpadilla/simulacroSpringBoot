@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,7 @@ public class UserController implements InterfaceUserControl {
 
     @Override
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
     @Operation(summary = "Este endpoint es para traer un usuario", description="estes enpoint requiere que envies el id del usuario")
     @ApiResponse(responseCode = "400", //arreglar
             description = "Este error sale cuando el id es invalido o el usuario no existe",
@@ -48,6 +50,7 @@ public class UserController implements InterfaceUserControl {
 
     @Override
     @PostMapping
+    @PreAuthorize(("hasRole('ADMIN')"))
     @Operation(summary = "Este endpoint es para buscar crear un usuario", description="este enpoint requiere que envies el la informacion para poder crear un usuario")
     @ApiResponse(responseCode = "400", //arreglar
             description = "Este error sale cuando falta un atributo o el tipo es invalido",
@@ -64,6 +67,7 @@ public class UserController implements InterfaceUserControl {
 
     @Override
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Este endpoint es para eliminar un usuario", description="estes enpoint requiere que envies el id del usuario")
     @ApiResponse(responseCode = "400", //arreglar
             description = "Este error sale cuando el id es invalido o el usuario no existe",
@@ -80,6 +84,7 @@ public class UserController implements InterfaceUserControl {
 
     @Override
     @GetMapping("/readAll")
+    @PreAuthorize("hasAnyRole('ADMIN','TEACHER')")
     @Operation(summary = "Este endpoint es para traer todos los usuario que existen", description="este endpoint no requiere nada")
     @ApiResponse(responseCode = "400", //arreglar
             description = "Este error sale cuando el id es invalido o el usuario no existe",
@@ -95,6 +100,7 @@ public class UserController implements InterfaceUserControl {
 
     @Override
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Este endpoint es para actualizar completamente un usuario", description="estes enpoint requiere que envies el id del usuario y la informacion completa que necesita un usuario")
     @ApiResponse(responseCode = "400", //arreglar
             description = "Este error sale cuando el id es invalido o el usuario no existe",
@@ -112,6 +118,7 @@ public class UserController implements InterfaceUserControl {
 
     @Override
     @PatchMapping("/path/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Este endpoint es para actualizar un dato del usuario", description="estos enpoint requiere que envies el id del usuario y la información especifica a actualizar ")
     @ApiResponse(responseCode = "400", //arreglar
             description = "Este error sale cuando el id es invalido o el usuario no existe",
